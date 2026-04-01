@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yanmo42/tara/blob/main/schemas/tara-gear-coupled.schema.json",
+  "title": "GearCoupledTARA",
+  "description": "Extended TARA schema for the worldline-gears operationalization. Treats temporal arcs as mechanically coupled gears with ratios, phase alignment, and slippage tolerances.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sourceArc",
+    "targetArc",
+    "timeMarker",
+    "stateSummary",
+    "confidence",
+    "driftEstimate",
+    "reconstructionTarget",
+    "gearRatio",
+    "phaseAlignment",
+    "slippageTolerance"
+  ],
+  "properties": {
+    "sourceArc": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Driving gear — the input worldline"
+    },
+    "targetArc": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Driven gear — the output worldline"
+    },
+    "timeMarker": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Phase alignment timestamp at transfer"
+    },
+    "stateSummary": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Compressed state encoded as a gear tooth pattern"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Gear mesh quality at time of transfer"
+    },
+    "driftEstimate": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Timing jitter / slippage rate"
+    },
+    "reconstructionTarget": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the driven gear is trying to decode"
+    },
+    "lossNotes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Missing teeth, slippage events, dropped cycles"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Gear manufacturing specs and emitter metadata"
+    },
+    "trustClass": {
+      "type": "string",
+      "enum": ["self", "neighbor", "external", "synthetic"],
+      "description": "Relationship between emitter and consumer"
+    },
+    "gearRatio": {
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$",
+      "description": "Cadence ratio between source and target arcs (e.g. '3:1', '7:3')"
+    },
+    "phaseAlignment": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Normalized phase match at transfer time (1 = perfect alignment)"
+    },
+    "slippageTolerance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Maximum allowable phase error before the coupling is considered failed"
+    },
+    "informationCapacity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Theoretical bits per gear cycle, derived from ratio and slippage tolerance"
+    },
+    "cadenceHz": {
+      "type": "object",
+      "description": "Operating cadences of each arc",
+      "properties": {
+        "source": { "type": "number", "minimum": 0 },
+        "target": { "type": "number", "minimum": 0 }
+      }
+    },
+    "steganographicEncoding": {
+      "type": "object",
+      "description": "Information embedding method in timing/phase relationships",
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "Encoding method (e.g. 'phase-differential', 'tooth-pattern')"
+        },
+        "capacityBitsPerCycle": {
+          "type": "number",
+          "minimum": 0
+        },
+        "errorCorrection": {
+          "type": "string",
+          "description": "Error correction method (e.g. 'parity-tooth', 'redundant-encoding')"
+        }
+      }
+    },
+    "mechanicalFailureModes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["slippage", "backlash", "tooth-skipping", "resonance", "phase-drift"]
+      },
+      "description": "Observed or predicted failure modes for this coupling"
+    }
+  }
+}

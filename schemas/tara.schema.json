@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yanmo42/tara/blob/main/schemas/tara.schema.json",
+  "title": "TemporalArcReferenceArray",
+  "description": "Base TARA schema. A bounded structured record of what one temporal arc can hand to another.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sourceArc",
+    "targetArc",
+    "timeMarker",
+    "stateSummary",
+    "confidence",
+    "driftEstimate",
+    "reconstructionTarget"
+  ],
+  "properties": {
+    "sourceArc": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the arc that emitted this array"
+    },
+    "targetArc": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the arc that will consume this array"
+    },
+    "timeMarker": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Timestamp or tick at which this array was emitted"
+    },
+    "stateSummary": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Compressed representation of source-arc state at emission time"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "How much the target arc should trust this representation"
+    },
+    "driftEstimate": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Expected rate of staleness — how fast the source is diverging from this snapshot"
+    },
+    "reconstructionTarget": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the target arc is trying to recover from this array"
+    },
+    "lossNotes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit record of what was dropped or compressed away"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Origin metadata: emitter, method, version"
+    },
+    "trustClass": {
+      "type": "string",
+      "enum": ["self", "neighbor", "external", "synthetic"],
+      "description": "Relationship between emitter and consumer"
+    }
+  }
+}

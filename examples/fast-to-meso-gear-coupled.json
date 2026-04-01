@@ -1,0 +1,39 @@
+{
+  "$schema": "../schemas/tara-gear-coupled.schema.json",
+  "sourceArc": "fast",
+  "targetArc": "meso",
+  "timeMarker": "tick-1042",
+  "stateSummary": {
+    "salientEvents": ["observer-switch", "route-change"],
+    "phase": "compression-after-perturbation",
+    "energy": 0.63,
+    "toothPattern": [1, 0, 1, 1, 0, 1, 0, 0, 1, 1]
+  },
+  "confidence": 0.92,
+  "driftEstimate": 0.08,
+  "reconstructionTarget": "enough state to support meso-layer routing and checkpoint decisions",
+  "lossNotes": [
+    "fine-grain microstate omitted",
+    "counterfactual branch traces dropped",
+    "phase slippage of 0.02π within tolerance"
+  ],
+  "provenance": {
+    "emitter": "hand-authored",
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "gearRatio": "3:1",
+  "phaseAlignment": 0.92,
+  "slippageTolerance": 0.08,
+  "informationCapacity": 3.64,
+  "cadenceHz": {
+    "source": 10.0,
+    "target": 3.33
+  },
+  "steganographicEncoding": {
+    "method": "phase-differential",
+    "capacityBitsPerCycle": 3.64,
+    "errorCorrection": "parity-tooth"
+  },
+  "mechanicalFailureModes": []
+}

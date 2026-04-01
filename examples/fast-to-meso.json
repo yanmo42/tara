@@ -1,0 +1,23 @@
+{
+  "$schema": "../schemas/tara.schema.json",
+  "sourceArc": "fast",
+  "targetArc": "meso",
+  "timeMarker": "tick-1042",
+  "stateSummary": {
+    "salientEvents": ["observer-switch", "route-change"],
+    "phase": "compression-after-perturbation",
+    "energy": 0.63
+  },
+  "confidence": 0.78,
+  "driftEstimate": 0.14,
+  "reconstructionTarget": "enough state to support meso-layer routing and checkpoint decisions",
+  "lossNotes": [
+    "fine-grain microstate omitted",
+    "counterfactual branch traces dropped"
+  ],
+  "provenance": {
+    "emitter": "hand-authored",
+    "version": "v1"
+  },
+  "trustClass": "self"
+}
