@@ -1,0 +1,53 @@
+{
+  "$schema": "../schemas/tara.schema.json",
+  "sourceArc": {
+    "id": "fast-observer",
+    "temporalBand": "fast",
+    "cadenceHz": 10.0,
+    "role": "observer"
+  },
+  "targetArc": {
+    "id": "meso-observer",
+    "temporalBand": "meso",
+    "cadenceHz": 3.33,
+    "role": "observer"
+  },
+  "timeMarker": "tick-2048",
+  "stateSummary": {
+    "salientEvents": ["timing-asymmetry-detected", "observer-coupling-shift"],
+    "phase": "active-tracking",
+    "energy": 0.71,
+    "distortion": 0.05,
+    "gradientHints": {
+      "asymmetry_trend": 0.12,
+      "coupling_strength": -0.03
+    }
+  },
+  "confidence": 0.82,
+  "driftEstimate": {
+    "overall": 0.18,
+    "perField": {
+      "energy": 0.25,
+      "phase": 0.10,
+      "salientEvents": 0.15
+    },
+    "decayModel": "exponential"
+  },
+  "reconstructionTarget": "meso-layer summary of fast-observer tracking state for routing decisions",
+  "lossNotes": [
+    "sub-tick timing microstructure dropped",
+    "individual measurement traces compressed to gradient hints",
+    "counterfactual branches not transferred"
+  ],
+  "provenance": {
+    "emitter": "fast-observer-codec",
+    "method": "neighbor-layer-embed",
+    "transferLatencyTicks": 3,
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "ticks": 50,
+    "duration": "PT15S"
+  }
+}

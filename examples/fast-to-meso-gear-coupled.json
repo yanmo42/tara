@@ -1,7 +1,17 @@
 {
   "$schema": "../schemas/tara-gear-coupled.schema.json",
-  "sourceArc": "fast",
-  "targetArc": "meso",
+  "sourceArc": {
+    "id": "fast-observer-01",
+    "temporalBand": "fast",
+    "cadenceHz": 10.0,
+    "role": "observer"
+  },
+  "targetArc": {
+    "id": "meso-router-01",
+    "temporalBand": "meso",
+    "cadenceHz": 3.33,
+    "role": "router"
+  },
   "timeMarker": "tick-1042",
   "stateSummary": {
     "salientEvents": ["observer-switch", "route-change"],
@@ -15,13 +25,16 @@
   "lossNotes": [
     "fine-grain microstate omitted",
     "counterfactual branch traces dropped",
-    "phase slippage of 0.02π within tolerance"
+    "phase slippage of 0.02\u03c0 within tolerance"
   ],
   "provenance": {
     "emitter": "hand-authored",
-    "version": "v1"
+    "version": "v2"
   },
   "trustClass": "self",
+  "validityWindow": {
+    "ticks": 100
+  },
   "gearRatio": "3:1",
   "phaseAlignment": 0.92,
   "slippageTolerance": 0.08,

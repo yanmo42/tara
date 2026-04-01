@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/tara.schema.json",
+  "sourceArc": {
+    "id": "meso-observer",
+    "temporalBand": "meso",
+    "cadenceHz": 1.0,
+    "role": "observer"
+  },
+  "targetArc": {
+    "id": "meso-observed",
+    "temporalBand": "meso",
+    "cadenceHz": 1.0,
+    "role": "observed"
+  },
+  "timeMarker": "tick-10042",
+  "stateSummary": {
+    "observerModel": "asymmetry trend rising, coupling stable",
+    "measurementPriorities": ["timing asymmetry", "coupling strength"],
+    "expectedBehavior": "gradual asymmetry increase over next 100 ticks",
+    "governancePassthrough": ["maintain causal boundary"]
+  },
+  "confidence": 0.76,
+  "driftEstimate": 0.12,
+  "reconstructionTarget": "observed-domain awareness of what the observer expects and prioritizes",
+  "lossNotes": [
+    "observer internal uncertainty not transferred",
+    "alternative measurement strategies omitted",
+    "governance context compressed to single constraint"
+  ],
+  "provenance": {
+    "emitter": "meso-observer-codec",
+    "method": "polarity-coupling-embed",
+    "upstreamProvenance": {
+      "emitter": "slow-observer-codec",
+      "method": "temporal-coupling-embed"
+    },
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "ticks": 200
+  }
+}

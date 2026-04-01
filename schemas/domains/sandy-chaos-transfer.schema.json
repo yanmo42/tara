@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yanmo42/tara/blob/main/schemas/domains/sandy-chaos-transfer.schema.json",
+  "title": "SandyChaosTransferPayload",
+  "description": "Optional sub-schema for stateSummary when the TARA represents a Sandy Chaos nested temporal domain transfer.",
+  "type": "object",
+  "properties": {
+    "salientEvents": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key events compressed into the transfer"
+    },
+    "phase": {
+      "type": "string",
+      "description": "Current operational phase of the source domain"
+    },
+    "energy": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Normalized energy or activity level"
+    },
+    "distortion": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Signal distortion accumulated during transfer"
+    },
+    "latency": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Transfer latency in source-domain ticks"
+    },
+    "gradientHints": {
+      "type": "object",
+      "additionalProperties": { "type": "number" },
+      "description": "Gradient-like directional hints for the target domain"
+    }
+  },
+  "additionalProperties": true
+}

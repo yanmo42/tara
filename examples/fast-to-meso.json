@@ -1,7 +1,17 @@
 {
   "$schema": "../schemas/tara.schema.json",
-  "sourceArc": "fast",
-  "targetArc": "meso",
+  "sourceArc": {
+    "id": "fast-observer-01",
+    "temporalBand": "fast",
+    "cadenceHz": 10.0,
+    "role": "observer"
+  },
+  "targetArc": {
+    "id": "meso-router-01",
+    "temporalBand": "meso",
+    "cadenceHz": 3.33,
+    "role": "router"
+  },
   "timeMarker": "tick-1042",
   "stateSummary": {
     "salientEvents": ["observer-switch", "route-change"],
@@ -9,7 +19,15 @@
     "energy": 0.63
   },
   "confidence": 0.78,
-  "driftEstimate": 0.14,
+  "driftEstimate": {
+    "overall": 0.14,
+    "perField": {
+      "energy": 0.22,
+      "phase": 0.08,
+      "salientEvents": 0.12
+    },
+    "decayModel": "exponential"
+  },
   "reconstructionTarget": "enough state to support meso-layer routing and checkpoint decisions",
   "lossNotes": [
     "fine-grain microstate omitted",
@@ -17,7 +35,11 @@
   ],
   "provenance": {
     "emitter": "hand-authored",
-    "version": "v1"
+    "version": "v2"
   },
-  "trustClass": "self"
+  "trustClass": "self",
+  "validityWindow": {
+    "ticks": 100,
+    "duration": "PT30S"
+  }
 }

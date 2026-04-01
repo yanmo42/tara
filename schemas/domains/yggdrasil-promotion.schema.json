@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yanmo42/tara/blob/main/schemas/domains/yggdrasil-promotion.schema.json",
+  "title": "YggdrasilPromotionPayload",
+  "description": "Optional sub-schema for stateSummary when the TARA represents a Yggdrasil branch-to-spine promotion.",
+  "type": "object",
+  "properties": {
+    "branchId": {
+      "type": "string",
+      "description": "Identifier of the branch being promoted"
+    },
+    "outcome": {
+      "type": "string",
+      "description": "What the branch produced"
+    },
+    "disposition": {
+      "type": "string",
+      "enum": ["no-promote", "log-daily", "promote-durable", "escalate-hitl"],
+      "description": "Promotion decision — maps to Yggdrasil's promotion dispositions"
+    },
+    "promotionEvidence": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Evidence or reasoning supporting the promotion decision"
+    },
+    "staleness": {
+      "type": "number",
+      "minimum": 0,
+      "description": "How stale the branch result is at promotion time"
+    }
+  },
+  "additionalProperties": true
+}

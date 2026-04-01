@@ -1,0 +1,45 @@
+{
+  "$schema": "../schemas/tara.schema.json",
+  "sourceArc": {
+    "id": "branch-experiment-077",
+    "temporalBand": "fast",
+    "role": "branch"
+  },
+  "targetArc": {
+    "id": "spine-memory",
+    "temporalBand": "slow",
+    "role": "spine"
+  },
+  "timeMarker": "2026-03-29T10:15:00Z",
+  "stateSummary": {
+    "branchId": "experiment-077",
+    "outcome": "explored alternative gear-ratio encoding but results were inconclusive",
+    "disposition": "no-promote",
+    "promotionEvidence": [
+      "results did not reach significance threshold",
+      "approach may be worth revisiting with more data"
+    ],
+    "staleness": 0.35
+  },
+  "confidence": 0.32,
+  "driftEstimate": 0.28,
+  "reconstructionTarget": "rejected by spine policy — insufficient evidence for durable memory",
+  "lossNotes": [
+    "partial results available in branch archive if revisited",
+    "approach notes preserved in branch log",
+    "no spine-level artifact produced"
+  ],
+  "provenance": {
+    "emitter": "ygg-promote",
+    "method": "operator-reviewed-decline",
+    "reviewDate": "2026-03-29",
+    "reviewType": "daily-mini-pass",
+    "declineReason": "signal too weak for promotion, staleness medium",
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "ticks": 7,
+    "duration": "P7D"
+  }
+}

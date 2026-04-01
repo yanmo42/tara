@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/tara.schema.json",
+  "sourceArc": {
+    "id": "slow-observer",
+    "temporalBand": "slow",
+    "cadenceHz": 0.1,
+    "role": "observer"
+  },
+  "targetArc": {
+    "id": "meso-observer",
+    "temporalBand": "meso",
+    "cadenceHz": 1.0,
+    "role": "observer"
+  },
+  "timeMarker": "tick-10000",
+  "stateSummary": {
+    "policyContext": "long-horizon tracking of asymmetry trend",
+    "governanceConstraints": ["maintain causal boundary", "do not exceed latency budget"],
+    "continuityPriorities": ["preserve observer coupling quality", "flag drift above 0.3"]
+  },
+  "confidence": 0.85,
+  "driftEstimate": 0.06,
+  "reconstructionTarget": "meso-layer governance context for observer routing decisions",
+  "lossNotes": [
+    "multi-epoch pattern history compressed to single trend",
+    "strategic alternatives not transferred",
+    "slow-layer uncertainty about long-term trajectory omitted"
+  ],
+  "provenance": {
+    "emitter": "slow-observer-codec",
+    "method": "temporal-coupling-embed",
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "ticks": 500
+  }
+}

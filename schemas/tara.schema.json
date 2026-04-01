@@ -4,7 +4,6 @@
   "title": "TemporalArcReferenceArray",
   "description": "Base TARA schema. A bounded structured record of what one temporal arc can hand to another.",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "sourceArc",
     "targetArc",
@@ -15,15 +14,43 @@
     "reconstructionTarget"
   ],
   "properties": {
-    "sourceArc": {
+    "$schema": {
       "type": "string",
-      "minLength": 1,
-      "description": "Identifier of the arc that emitted this array"
+      "description": "Optional schema self-reference for tooling"
+    },
+    "sourceArc": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1, "description": "Arc identifier" },
+            "temporalBand": { "enum": ["fast", "meso", "slow"], "description": "Cadence band" },
+            "cadenceHz": { "type": "number", "minimum": 0, "description": "Operating frequency" },
+            "role": { "type": "string", "description": "Arc role (e.g. observer, chaser, branch, spine)" }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "description": "Identifier of the arc that emitted this array — string or structured object with temporal band and role"
     },
     "targetArc": {
-      "type": "string",
-      "minLength": 1,
-      "description": "Identifier of the arc that will consume this array"
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1, "description": "Arc identifier" },
+            "temporalBand": { "enum": ["fast", "meso", "slow"], "description": "Cadence band" },
+            "cadenceHz": { "type": "number", "minimum": 0, "description": "Operating frequency" },
+            "role": { "type": "string", "description": "Arc role (e.g. observer, chaser, branch, spine)" }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "description": "Identifier of the arc that will consume this array — string or structured object with temporal band and role"
     },
     "timeMarker": {
       "type": "string",
@@ -42,9 +69,27 @@
       "description": "How much the target arc should trust this representation"
     },
     "driftEstimate": {
-      "type": "number",
-      "minimum": 0,
-      "description": "Expected rate of staleness — how fast the source is diverging from this snapshot"
+      "oneOf": [
+        { "type": "number", "minimum": 0 },
+        {
+          "type": "object",
+          "required": ["overall"],
+          "properties": {
+            "overall": { "type": "number", "minimum": 0, "description": "Aggregate drift rate" },
+            "perField": {
+              "type": "object",
+              "additionalProperties": { "type": "number", "minimum": 0 },
+              "description": "Per-field drift rates (e.g. position drifts faster than identity)"
+            },
+            "decayModel": {
+              "enum": ["exponential", "linear", "step"],
+              "description": "How confidence decays as the array ages"
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "description": "Expected rate of staleness — single number or structured per-field breakdown with decay model"
     },
     "reconstructionTarget": {
       "type": "string",
@@ -65,6 +110,16 @@
       "type": "string",
       "enum": ["self", "neighbor", "external", "synthetic"],
       "description": "Relationship between emitter and consumer"
+    },
+    "validityWindow": {
+      "type": "object",
+      "description": "Duration after which this array should be treated as stale",
+      "properties": {
+        "ticks": { "type": "integer", "minimum": 1, "description": "Validity in tick-count" },
+        "duration": { "type": "string", "description": "Validity as ISO 8601 duration or human-readable" }
+      },
+      "minProperties": 1,
+      "additionalProperties": false
     }
   }
 }

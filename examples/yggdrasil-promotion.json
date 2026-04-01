@@ -1,0 +1,44 @@
+{
+  "$schema": "../schemas/tara.schema.json",
+  "sourceArc": {
+    "id": "branch-research-042",
+    "temporalBand": "fast",
+    "role": "branch"
+  },
+  "targetArc": {
+    "id": "spine-memory",
+    "temporalBand": "slow",
+    "role": "spine"
+  },
+  "timeMarker": "2026-03-28T17:30:00Z",
+  "stateSummary": {
+    "branchId": "research-042",
+    "outcome": "validated that neighbor-layer codec decomposition produces measurably different results from all-to-all coupling in toy simulation",
+    "disposition": "promote-durable",
+    "promotionEvidence": [
+      "simulation completed with clean results",
+      "findings affect Sandy Chaos architecture decisions",
+      "operator confirmed significance during daily pass"
+    ],
+    "staleness": 0.05
+  },
+  "confidence": 0.91,
+  "driftEstimate": 0.03,
+  "reconstructionTarget": "spine-level memory of validated research finding for future architectural decisions",
+  "lossNotes": [
+    "raw simulation data not promoted (available in branch archive)",
+    "intermediate hypotheses and dead ends not transferred",
+    "debugging steps omitted"
+  ],
+  "provenance": {
+    "emitter": "ygg-promote",
+    "method": "operator-reviewed-promotion",
+    "reviewDate": "2026-03-28",
+    "reviewType": "daily-mini-pass",
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "duration": "P30D"
+  }
+}

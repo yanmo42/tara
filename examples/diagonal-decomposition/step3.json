@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schemas/tara.schema.json",
+  "sourceArc": {
+    "id": "meso-observed",
+    "temporalBand": "meso",
+    "cadenceHz": 1.0,
+    "role": "observed"
+  },
+  "targetArc": {
+    "id": "fast-observed",
+    "temporalBand": "fast",
+    "cadenceHz": 10.0,
+    "role": "observed"
+  },
+  "timeMarker": "tick-10050",
+  "stateSummary": {
+    "boundaryConditions": ["asymmetry monitoring active", "causal boundary enforced"],
+    "prioritySignals": {"timing_asymmetry": 0.8, "coupling_strength": 0.5},
+    "constraintSummary": "observer expects gradual asymmetry increase"
+  },
+  "confidence": 0.88,
+  "driftEstimate": 0.20,
+  "reconstructionTarget": "fast-layer actionable constraints from upstream observer chain",
+  "lossNotes": [
+    "meso-level routing rationale dropped",
+    "alternative constraint sets not transferred",
+    "observer model compressed to single expectation string"
+  ],
+  "provenance": {
+    "emitter": "meso-observed-codec",
+    "method": "temporal-coupling-embed",
+    "upstreamChain": ["slow-observer-codec", "meso-observer-codec"],
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "ticks": 50
+  }
+}

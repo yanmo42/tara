@@ -1,0 +1,49 @@
+{
+  "$schema": "../schemas/tara-gear-coupled.schema.json",
+  "sourceArc": {
+    "id": "meso-branch-ops",
+    "temporalBand": "meso",
+    "cadenceHz": 1.0,
+    "role": "router"
+  },
+  "targetArc": {
+    "id": "slow-spine",
+    "temporalBand": "slow",
+    "cadenceHz": 0.143,
+    "role": "spine"
+  },
+  "timeMarker": "2026-03-28T18:00:00Z",
+  "stateSummary": {
+    "weekSummary": "7 branches executed, 3 promoted, 2 declined, 2 hibernated",
+    "promotedItems": ["research-042", "tooling-fix-019", "schema-update-005"],
+    "declinedItems": ["experiment-077", "speculative-ui-003"],
+    "openIssues": ["gear-ratio encoding needs revisit"]
+  },
+  "confidence": 0.87,
+  "driftEstimate": 0.04,
+  "reconstructionTarget": "weekly spine-level summary for continuity review and planning",
+  "lossNotes": [
+    "individual branch execution details compressed to counts",
+    "daily pass reasoning not transferred (available in pass logs)",
+    "branch timing and ordering information dropped"
+  ],
+  "provenance": {
+    "emitter": "ygg-weekly-pass",
+    "method": "winter-pass-full",
+    "reviewDate": "2026-03-28",
+    "version": "v1"
+  },
+  "trustClass": "self",
+  "validityWindow": {
+    "duration": "P7D"
+  },
+  "gearRatio": "7:1",
+  "phaseAlignment": 0.95,
+  "slippageTolerance": 0.15,
+  "informationCapacity": 2.74,
+  "cadenceHz": {
+    "source": 1.0,
+    "target": 0.143
+  },
+  "mechanicalFailureModes": []
+}
